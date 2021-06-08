@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<style>
+    canvas { position:fixed; width:50%; height:50%;  }
+    #bar-chart { top:50;   left:25%;}
+    #bar-chart2 { top:50%; left:25%;}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+ <div id="container" style="width: 55%;">
+    <canvas style="height:35%; margin-top:20px;"  id="bar-chart"></canvas>
+    <canvas id="bar-chart2" style="height:35%; margin-top:100px;" ></canvas>
+ </div>
+
+ <script>
+    var config = {type: 'bar',
+      data: {
+        datasets: [{
+          data: {{ inssurance_repayment_rates.data|safe }},
+          backgroundColor: ['#003f5c', '#ffa600','#bc5090', '#ff6361'],
+          label: 'Inssurance agencies & repayment rates'
+        }],
+        labels: {{ inssurance_repayment_rates.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Inssurance agencies & repayment rates',
+            fontSize : 18
+        }
+      }
+    };
+
+    var config2 = {type: 'bar',
+      data: {
+        datasets: [{
+          data: {{ inssurance_disstribution.data|safe }},
+          backgroundColor: ['#003f5c', '#ffa600','#bc5090', '#ff6361'],
+          label: 'Inssurance agencies distribution'
+        }],
+        labels: {{ inssurance_disstribution.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Inssurance agencies distribution',
+            fontSize : 18
+        }
+      }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById('bar-chart').getContext('2d');
+        var ctx2 = document.getElementById('bar-chart2').getContext('2d');
+
+
+        window.myBar = new Chart(ctx, config);
+        window.myBar = new Chart(ctx2, config2);
+
+    };
+
+  </script>
+
+
+{% endblock %}

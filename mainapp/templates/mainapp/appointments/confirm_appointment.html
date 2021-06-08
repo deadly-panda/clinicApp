@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<a class="btn btn-info right" href="{% url 'calendar' %}"> Calendar </a>
+<div class="formcontainer">
+    <div id="entity">
+        <div style="overflow: hidden;">
+            <p style="float: left;">Day of the appointment: </p><p style="float: right;">{{appointment.day}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Starting time: </p><p style="float: right;">{{appointment.start_time}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Ending time: </p><p style="float: right;">{{appointment.end_time}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Patient: </p><p style="float: right;"><a href="{% url 'patient' appointment.patient.id %}">{{ appointment.patient.last_name }} {{ appointment.patient.first_name }}</a></p>
+        </div>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="submit" value="Save" id="submit">Confirm Appointment</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

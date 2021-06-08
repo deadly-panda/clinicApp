@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Consultation :</h2>
+        <table class="table table-stariped">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Patient Full Name</th>
+                  <th scope="col">Doctor Full Name</th>
+                  <th scope="col">Specialty</th>
+                  <th scope="col">Date Time</th>
+                  <th scope="col">Observation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th scope="row"><a href="{% url 'patient' consultation.appointment.patient.id %}">{{ consultation.appointment.patient.last_name }} {{ consultation.appointment.patient.first_name }}</a></th>
+                  <th scope="row">{{ consultation.doctor.last_name }} {{ consultation.doctor.first_name }}</th>
+                  <td>{{ consultation.appointment.specialty }}</td>
+                  <td>{{ consultation.appointment.day }} : {{ consultation.appointment.start_time }} to {{ consultation.appointment.end_time }}</td>
+                  <td>{{ consultation.observation }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <br>
+            <h3>Bill :</h3>
+            <br>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Patient Full Name</th>
+                      <th scope="col">Insurance Agency</th>
+                      <th scope="col">Fee</th>
+                      <th scope="col">Payment State</th>
+                      <th scope="col">Print</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{ consultation.appointment.patient.last_name }} {{ consultation.appointment.patient.first_name }}</td>
+                      <td>{{ consultation.appointment.patient.insur_acc_nb.insuranceAgency }}</td>
+                      <td>{{bill.fee}}</td>
+                      <td>{{bill.payment_state}}</td>
+                      <td><a href="#">Print</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h3>Treatment :</h3>
+            <p>{{prescription.treatment}}</p>
+        </div>
+
+{% endblock %}

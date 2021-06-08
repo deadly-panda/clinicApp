@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="formcontainer">
+    <form action="" method="POST" id="entity">
+        <h3>Fill in the information below :</h3>
+        {% csrf_token %}
+        <fieldset>
+            {{ profile_form }}
+        </fieldset>
+        <fieldset>
+            <p>Address :</p>
+            {{ address_form }}
+        </fieldset>
+        <fieldset>
+            <p>Insurance account :</p>
+            {{ insuranceAccount_form }}
+        </fieldset>
+       <button type="submit" name="submit" value="Save" id="submit">Save</button>
+    </form>
+ </div>
+
+{% endblock %}

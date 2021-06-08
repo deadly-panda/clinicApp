@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="clearfix">
+  <a class="btn btn-info right" href="http://127.0.0.1:8000/calendar"> Calendar </a>
+</div>
+
+<div class="formcontainer">
+    <form action="" method="POST" id="entity">
+    {% csrf_token %}
+        <fieldset>
+            <label for='id_day'>Day of the appointment:</label>
+            {{form.day}}
+            {{ error }}
+            <br>
+            <label for='id_start_time'>Starting time:</label>
+            {{form.start_time}}
+            {{ form.errors.start_time }}
+            <label for='id_end_time'>Ending time:</label>
+            {{form.end_time}}
+            {{ form.errors.end_time }}
+            <label for='id_specialty'>Specialty:</label>
+            {{form.specialty}}
+        </fieldset>
+        <button type="submit" name="submit" value="Save" id="submit">Make appointment</button>
+  </form>
+</div>
+
+{% endblock %}

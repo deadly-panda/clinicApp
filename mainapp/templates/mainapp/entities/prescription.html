@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="formcontainer">
+    <div id="entity">
+        <h3>Prescription</h3>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Day of the appointment: </p><p style="float: right;">{{prescription.consultation.appointment.day}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Time: </p><p style="float: right;">{{prescription.consultation.appointment.start_time}} - {{prescription.consultation.appointment.end_time}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Doctor: </p><p style="float: right;">{{prescription.consultation.doctor.last_name}} {{prescription.consultation.doctor.first_name}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Patient: </p><p style="float: right;"><a href="{% url 'patient' prescription.consultation.appointment.patient.id %}">{{prescription.consultation.appointment.patient.last_name }} {{prescription.consultation.appointment.patient.first_name}}</a></p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Treatment: </p><p style="float: right;">{{prescription.treatment}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h2>Manage <b>Doctors</b></h2>
+                    <input type="search" id="search" placeholder="Filter by CIN or Name">
+                </div>
+                <div class="col-sm-2 my-auto" style="height:20px;">
+                    <a href="{% url 'create' 'doctor' %}" class="btn btn-success"><span>Add New Doctor</span></a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Full Name</th>
+                  <th scope="col"><Birth-></Birth->date</th>
+                  <th scope="col">CIN</th>
+                  <th scope="col">Specialty</th>
+                  <th scope="col">Salary</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Update</th>
+                  <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                      <th id="fullname">{{ item.last_name }} {{ item.first_name }}</th>
+                      <td>{{ item.birth_date }}</td>
+                      <td id="cin">{{ item.cin }}</td>
+                      <td>{{ item.specialty }}</td>
+                      <td>{{ item.salary }}</td>
+                      <td>{{ item.email }}</td>
+                      <td>{{ item.phone_nb }}</td>
+                      <td>{{ item.address.streetNb }} {{ item.address.AptFloor }} - {{ item.address.city }} </td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'update' item.id 'doctor' %}">Update</a></td>
+                      <td><a class="btn btn-sm btn-danger" href="{% url 'delete' item.id 'doctor' %}" >Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include '../../pagination.html' with page=items %}
+
+<script>
+$('#search').keyup(function() {
+  var regex = new RegExp($('#search').val(), "i");
+  var rows = $('table tr:gt(0)');
+  rows.each(function (index) {
+    cin = $(this).children("#cin").html()
+    fullname = $(this).children("#fullname").html()
+    if (cin.search(regex) != -1 || fullname.search(regex) != -1)  {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+});
+</script>
+
+
+    {% endblock %}

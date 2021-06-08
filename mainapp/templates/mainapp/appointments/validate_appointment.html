@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+ <div class="formcontainer">
+    <form action="" method="POST" id="entity">
+        <h3>Consultation : </h3>
+        {% csrf_token %}
+        <fieldset>
+            {{ consulation_form }}
+        </fieldset>
+        <fieldset>
+            <p>Prescription : </p>
+            {{ prescription_form }}
+        </fieldset>
+        <fieldset>
+            <p>Bill</p>
+            {{ bill_form }}
+        </fieldset>
+        <button type="submit" name="submit" value="Save" id="submit">Save</button>
+    </form>
+ </div>
+
+{% endblock %}

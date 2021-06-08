@@ -1,0 +1,79 @@
+{% load static %}
+{% load usergroup_tag %}
+<style>
+  .hello-msg{
+    font-size:18px;
+    color:#fff;
+    margin-right:20px;
+  }
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="{% static 'images/medlogo.ico' %}">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        {% if request.user|has_group:"admin" %}
+        <a class="nav-link" href="{% url 'dashboard'  %}">Dashboard <span class="sr-only">(current)</span></a>
+        {% else %}
+          <a class="nav-link" href="{% url 'home'  %}">Home <span class="sr-only">(current)</span></a>
+        {% endif %}
+      </li>
+      {% if request.user|has_group:"patient" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'patientDocs' 'document' %}">My documents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'patientDocs' 'prescription' %}">My prescriptions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'patientDocs' 'bill' %}">My bills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'patientDocs' 'insurance' %}">My insurance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'calendar' %}">Make an appointment</a>
+        </li>
+      {% elif request.user|has_group:"doctor" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'patient' %}">Patients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'doctorConsultations' %}">My Consultations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'calendar' %}">Calendar</a>
+        </li>
+      {% elif request.user|has_group:"admin" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'doctor' %}">Doctors</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'nurse' %}">Nurses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'agency' %}">Insurance Agencies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'patient' %}">Patients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'bill' %}">Bills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_entities' 'prescription' %}">Prescriptions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'calendar'  %}">Calendar</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+  <span class="hello-msg">Hello, {{ request.user }}</span>
+  <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+</nav>

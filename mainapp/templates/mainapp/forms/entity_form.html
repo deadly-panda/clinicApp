@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+ <div class="formcontainer">
+    <form action="" method="POST" id="entity">
+      <h3>{{ entity }}</h3>
+        {% csrf_token %}
+        {% if userCreationform %}
+            <fieldset>
+                <label for="id_username">Username:</label>
+                    {{userCreationform.username}}
+                <label for="id_password1">Password:</label>
+                    {{userCreationform.password1}}
+                <label for="id_password2">Confirm password:</label>
+                    {{userCreationform.password2}}
+            </fieldset>
+        {% endif %}
+
+        {{form}}
+        <fieldset>
+            <p>Address :</p>
+            {{ address_form}}
+        </fieldset>
+        {% if insur_acc_form %}
+        <fieldset>
+            {{insur_acc_form}}
+        </fieldset>
+        {% endif %}
+        <button type="submit" name="submit" value="Save" id="submit">Save</button>
+    </form>
+ </div>
+
+{% endblock %}

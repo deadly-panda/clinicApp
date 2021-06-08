@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<p class=" row justify-content-center" style="font-weight:bold; ">Are you sure you want to delete  "{{item}}" ?</p>
+ <div class="row justify-content-center">
+    <form  method="POST">
+        {% csrf_token %}
+        <a class="btn btn-warning btn-lg" onClick="javascript:history.go(-1)">Cancel</a>
+        <input class ="btn btn-danger btn-sm" type="submit" name="Confirm" value="Confirm">
+
+    </form>
+ </div>
+
+{% endblock %}

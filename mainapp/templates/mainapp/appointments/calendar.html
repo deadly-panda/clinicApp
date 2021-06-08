@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load usergroup_tag %}
+
+
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
+    <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+    <a class="btn btn-info right" href="{% url 'calendar_byday' %}">Today</a>
+    {% if not request.user|has_group_patient %}
+        <a class="btn btn-info right"  href="{% url 'appointment_new' %}"> New Appointment </a>
+    {% endif %}
+</div>
+
+{{ calendar }}
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="formcontainer">
+    <div id="entity">
+        <h3>Document</h3>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Title : </p><p style="float: right;">{{document.title}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Type : </p><p style="float: right;">{{document.type}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Doctor : </p><p style="float: right;">{{document.doctor}}</p>
+        </div>
+        <div style="overflow: hidden;">
+            <p style="float: left;">Observation : </p><p style="float: right;">{{document.observation}}</p>
+        </div>
+        <hr>
+        <div style="overflow: hidden;">
+            <p> The model predicted  : <b>{{label}}</b></p>
+            <img style="display:block; margin:auto;" src="{{document.image.url}}" alt="cell_image"><br>
+            <span> Ps : The prediction must be examined by your doctor.</span>
+        </div>
+</div>
+
+    </div>
+</div>
+
+
+{% endblock %}

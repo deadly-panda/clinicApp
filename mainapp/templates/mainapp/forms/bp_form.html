@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="formcontainer">
+    <form action="" method="POST" id="entity">
+        <h3>{{entity}}</h3>
+        {% csrf_token %}
+        <fieldset>
+            {{ form }}
+        </fieldset>
+        <button type="submit" name="submit" value="Save" id="submit">Save</button>
+    </form>
+ </div>
+
+{% endblock %}

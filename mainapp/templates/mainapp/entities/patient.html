@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <div class="col-sm-2 my-auto right" style="height:20px;">
+            <a href="{% url 'create_document' patient.id %}" class="btn btn-success"><span>Add New Document</span></a>
+        </div><br><br><hr>
+        <table class="table table-stariped">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Full Name</th>
+                  <th scope="col">Birth-date</th>
+                  <th scope="col">CIN</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th scope="row">{{ patient.last_name }} {{ patient.first_name }}</th>
+                  <td>{{ patient.birth_date }}</td>
+                  <td>{{ patient.cin }}</td>
+                  <td>{{ patient.email }}</td>
+                  <td>{{ patient.phone_nb }}</td>
+                  <td>{{ patient.address.streetNb }} {{ patient.address.AptFloor }} - {{ patient.address.city }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <br>
+            <h3>Documents :</h3>
+            <br>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Title</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Doctor</th>
+                      <th scope="col">Link</th>
+                      <th scope="col">Observation</th>
+                      <th scope="col">Update</th>
+                      <th scope="col">Remove</th>
+                      <th scope="col">Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for doc in documents %}
+                    <tr>
+                      <td>{{doc.title}}</td>
+                      <td>{{doc.type}}</td>
+                      <td>{{doc.doctor}}</td>
+                      <td><a href="{{doc.link}}">Preview</a></td>  <!--<img src="#">-->
+                      <td>{{doc.observation}}</td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'updateDoc' doc.id patient.id %}">Update</a></td>
+                      <td><a class="btn btn-sm btn-danger" href="{% url 'deleteDoc' doc.id patient.id %}">Remove</a></td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'malaria_diagnose' doc.id patient.id %}">Test</a></td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

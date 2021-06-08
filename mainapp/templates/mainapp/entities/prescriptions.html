@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h2>Manage <b>Prescriptions</b></h2>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Doctor</th>
+                  <th scope="col">Patient full name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Observation</th>
+                  <th scope="col">Treatment</th>
+                  <th scope="col">Update</th>
+                  <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                      <td>{{ item.consultation.doctor.last_name }} {{ item.consultation.doctor.first_name }}</td>
+                      <td>{{ item.consultation.appointment.patient.last_name }} {{ item.consultation.appointment.patient.first_name }}</td>
+                      <td>{{ item.consultation.appointment.patient.email }}</td>
+                      <td>{{ item.consultation.observation }}</td>
+                      <td>{{ item.treatment }} </td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'update_bp' item.id 'prescription' %}">Update</a></td>
+                      <td><a class="btn btn-sm btn-danger" href="{% url 'delete' item.id 'prescription' %}">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+        {% include '../../pagination.html' with page=items %}
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <div>
+            <br>
+            <h3>My Prescriptions :</h3>
+            <br>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Consultation Id</th>
+                      <th scope="col">Doctor</th>
+                      <th scope="col">Observation</th>
+                      <th scope="col">Treatment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for item in items %}
+                    <tr>
+                      <td>{{item.consultation.id}}</td>
+                      <td>{{item.consultation.doctor}}</td>
+                      <td>{{item.consultation.observation}}</td>
+                      <td>{{item.treatment}}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include '../../pagination.html' with page=items %}
+
+{% endblock %}

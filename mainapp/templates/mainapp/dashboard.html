@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<style>
+    canvas { position:fixed; width:50%; height:50%;  }
+    #pie-chart { top:50;   left:0;}
+    #pie-chart3 { top:50;   left:50%;}
+    #pie-chart2 { top:50%; left:0;}
+    #pie-chart4 { top:50%; left:50%;}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+ <div id="container" style="width: 55%;">
+    <canvas style="height:35%; margin-top:20px;"  id="pie-chart"></canvas>
+    <canvas id="pie-chart2" style="height:35%; margin-top:100px;" ></canvas>
+    <b></b><canvas id="pie-chart3" style="height:35%; margin-top:20px;" ></canvas>
+    <b></b><canvas id="pie-chart4" style="height:35%; margin-top:100px;" ></canvas>
+ </div>
+<a href="{% url 'dashboard2' %}">More</a>
+ <script>
+    var config = {type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ bill_payments_distribution.data|safe }},
+          backgroundColor: [ '#003f5c', '#ffa600',],
+          label: 'Payements distribution'
+        }],
+        labels: {{ bill_payments_distribution.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Bills payment state distribution',
+            fontSize : 18
+        }
+      }
+    };
+
+    var config2 = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ sex_distribution.data|safe }},
+          backgroundColor: ['#003f5c', '#ffa600',],
+          label: 'Sex distribution'
+        }],
+        labels: {{ sex_distribution.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Patients Sex distribution',
+            fontSize : 18
+        }
+      }
+    };
+    var config3 = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ specialty_distribution.data|safe }},
+          backgroundColor: ['#003f5c', '#ffa600','#bc5090', '#ff6361'],
+          label: 'Specialty distribution'
+        }],
+        labels: {{ specialty_distribution.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Doctor Specialty distribution',
+            fontSize : 18
+        }
+      }
+    };
+    var config4 = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ appointment_state_distribution.data|safe }},
+          backgroundColor: ['#003f5c', '#ffa600','#bc5090', '#ff6361'],
+          label: 'Appointments state distribution'
+        }],
+        labels: {{ appointment_state_distribution.labels|safe }}
+      },
+      options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Appointments state distribution',
+            fontSize : 18
+        }
+      }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+        var ctx2 = document.getElementById('pie-chart2').getContext('2d');
+        var ctx3 = document.getElementById('pie-chart3').getContext('2d');
+        var ctx4 = document.getElementById('pie-chart4').getContext('2d');
+
+        window.myPie = new Chart(ctx, config);
+        window.myPie = new Chart(ctx2, config2);
+        window.myPie = new Chart(ctx3, config3);
+        window.myPie = new Chart(ctx4, config4);
+    };
+
+  </script>
+
+
+{% endblock %}
