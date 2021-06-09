@@ -5,7 +5,7 @@ It gives the possibility  for a patient to make an appointment & view his docume
 It also helps the doctors both with their schedules and diagnosis.
 Finally, it presents dashboards giving the admins insights about different & important aspects of managment.
 
-It was made with love and Django~=3.1.
+It was made with **love** and **Django~=3.1**.
 
 # Steps to run  the project.
 - Clone the project : ``` git clone https://github.com/deadly-panda/clinicApp.git ```
@@ -19,11 +19,13 @@ It was made with love and Django~=3.1.
 - You can also create a superuser to have admin permissions : ``` python3 manage.py createsuperuser ```
 
 
-# The Classes
+# The Models
+The image below shows the classes, in this case (Django case) the models, used in this web application.
+One should mention the use of django-allauth, an integrated set of Django applications addressing authentication, registration, account management.
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/3wNuMua.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">The models</label>
+  <img src="https://i.imgur.com/3wNuMua.png" height="100%" width="100%" title="models">
 </p> 
 
 # Three types of users
@@ -32,20 +34,20 @@ The patients can easly send an appointment request with the day & time they pref
 shots or ultrasound images.
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/PbNBCas.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">The appointment request is pending : waiting for a doctor to confirm or cancel.</label>
+  <img src="https://i.imgur.com/PbNBCas.png" height="100%" width="100%" title="Appoint_pending">
 </p> 
 
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/5NmJpCV.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">Patient's documents</label>
+  <img src="https://i.imgur.com/5NmJpCV.png" height="100%" width="100%" title="Pat_documents">
 </p> 
 
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/rqLwCil.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">Patient's bills</label>
+  <img src="https://i.imgur.com/rqLwCil.png" height="100%" width="100%" title="Pat_bills">
 </p> 
 
 
@@ -58,20 +60,20 @@ Other machine learning &  deep learning models could be easly integrated with th
 
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/xFk8rnT.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">Appointment request</label>
+  <img src="https://i.imgur.com/xFk8rnT.png" height="100%" width="100%" title="Appoint_request">
 </p> 
 
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/s8pAADT.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">Patient information & documents from the doctors side</label>
+  <img src="https://i.imgur.com/s8pAADT.png" height="100%" width="100%" title="PatInfo">
 </p> 
 
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/vas7ybr.png" height="100%" width="100%" title="hover text">
+  <label style="font-weight: bold;">The empty calendar</label>
+  <img src="https://i.imgur.com/vas7ybr.png" height="100%" width="100%" title="Empty_calendar">
 </p> 
 
 # Admins
@@ -80,14 +82,10 @@ They also have a simple yet elegant dashboard, giving them insight about diffren
 sex distribution also information about insurrance companies & accounts..etc.
 
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/8Gm2QrF.png" height="100%" width="100%" title="hover text">
+  <img src="https://i.imgur.com/8Gm2QrF.png" height="100%" width="100%" title="Dashboard1">
 </p> 
-
-
 <p align="center">
-  <label style="font-weight: bold;">Categories</label>
-  <img src="https://i.imgur.com/YMd2YoN.png" height="100%" width="100%" title="hover text">
+  <img src="https://i.imgur.com/YMd2YoN.png" height="100%" width="100%" title="Dashboard2">
 </p> 
 
 
